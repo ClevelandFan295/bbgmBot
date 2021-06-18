@@ -28,7 +28,8 @@ nonExportCommands = ['help', 'load', 'test']
 playerCommands = ['stats', 'bio', 'ratings', 'adv', 'proghistory', 'awards', 'compare', 'splits']
 teamCommands = ['roster', 'picks', 'pyramid', 'sos']
 leagueCommands = ['fa', 'pr', 'draft', 'matchups', 'matchup', 'leaders', 'ps', 'deaths']
-totalCommands = nonExportCommands + playerCommands + teamCommands + leagueCommands + automationCommands
+totalCommands = nonExportCommands + playerCommands + teamCommands + leagueCommands
+#put any users that you want to be able to load exports into this list. The supplied user ID is mine, feel free to remove ;)
 adminUsers = [625806545610997762]
 
 
