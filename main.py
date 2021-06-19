@@ -1143,7 +1143,9 @@ async def on_message(message):
                     ls = t['seasons'][-1]
                     teamRecord = str(season) + ' record: ' + str(ls['won']) + '-' + str(ls['lost'])
                     playoffRoundsWon = ls['playoffRoundsWon']
-                    playoffRounds = len(settings['numGamesPlayoffSeries'][-1]['value'])
+                     playoffSettings = settings['numGamesPlayoffSeries']
+                    try: playoffRounds = len(playoffSettings[-1]['value'])
+                    except: playoffRounds = len(playoffSettings)
                     teamColor = int(t['colors'][0].replace("#", ""),16)
                     embedColor = int(hex(teamColor), 0)
                     image = t['imgURL']
