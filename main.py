@@ -26,8 +26,8 @@ async def on_ready():
 prefix = '-'
 nonExportCommands = ['help', 'load', 'test']
 playerCommands = ['stats', 'bio', 'ratings', 'adv', 'proghistory', 'awards', 'compare', 'splits']
-teamCommands = ['roster', 'picks', 'pyramid', 'sos']
-leagueCommands = ['fa', 'pr', 'draft', 'matchups', 'matchup', 'leaders', 'ps', 'deaths']
+teamCommands = ['roster', 'picks', 'pyramid', 'sos', 'ownspicks']
+leagueCommands = ['fa', 'pr', 'draft', 'deaths']
 totalCommands = nonExportCommands + playerCommands + teamCommands + leagueCommands
 #put any users that you want to be able to load exports into this list. The supplied user ID is mine, feel free to remove ;)
 adminUsers = [625806545610997762]
@@ -72,27 +72,30 @@ async def on_message(message):
                         color=0xE7AA00)
                 embed.set_footer(text="Made by ClevelandFan#6181")
                 # embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/829211052708855859/843262932179877928/55u7s4.jpg')
+                if message.channel.guild.me.guild_permissions.manage_messages == False:
+                    embed.add_field(name='Warning ⚠️', value='bbgmBot requires "manage messages" permissions in order to properly switch between embed screens on commands such as roster and stats.')
                 embed.add_field(name="**Player Commands**",value="""
-                • **-stats**
-                • **-ratings**
-                • **-bio**
-                • **-adv** (advanced stats)
-                • **-proghistory**
-                • **-awards**
-                • **-compare** (compares a draft prospects ceiling to a player)
+• **-stats**
+• **-ratings**
+• **-bio**
+• **-adv** (advanced stats)
+• **-proghistory**
+• **-awards**
+• **-compare** (compares a draft prospects ceiling to a player)
                 """, inline=False)
                 embed.add_field(name="**Team Commands**",value="""
-                • **-roster** (can show both contracts and stats)
-                • **-picks**
-                • **-pyramid** (projected record based on TR, and SOS)
+• **-roster** (can show both contracts and stats)
+• **-picks**
+• **-ownspicks** (shows who owns the picks of said team)
+• **-pyramid** (projected record based on TR, and SOS)
                 """, inline=False)
                 embed.add_field(name="**League Commands**",value="""
-                • **-fa**
-                • **-draft** (not functional yet)
+• **-fa**
+• **-draft** (shows draft ratings 'at the time', not current, for historic drafts)
                 """, inline=True)
                 embed.add_field(name="**Other**",value="""
-                • **-load** (server mods only, loads an export file)
-                • **-help**
+• **-load** (server mods only, loads an export file)
+• **-help**
                 """, inline=True)
                 await message.channel.send(embed=embed)
             
@@ -1083,7 +1086,8 @@ async def on_message(message):
                         scrubVar = 1
                     else:
                         await botEmbed.edit(content='', embed=secondaryEmbed)
-                        await botEmbed.remove_reaction('➡️', message.author)
+                        try: await botEmbed.remove_reaction('➡️', message.author)
+                        except: await message.channel.send('>>> ---' + '\n' + '⚠️ **__Warning__:** bbgmBot requires "manage messages" permissions in order to properly switch back-and-forth between embed screens.' + '\n' + '---')
                     def check(reaction, user):
                         return reaction.message == botEmbed and user == message.author and str(reaction.emoji) == '⬅️'
                     try:
@@ -1243,6 +1247,10 @@ async def on_message(message):
                             teamRoster.append("{} {} {}".format(p['pid'], playerOvr, commandSeason))
                     teamRoster.sort(key=lambda l: int(l.split(' ')[1]), reverse=True)
                 #list grabbed, now to put it into the final roster output... gonna set it to just top 15 first
+                if len(teamRoster) > 13:
+                    rosterOverflow = True
+                else:
+                    rosterOverflow = False
                 teamRoster = teamRoster[:13]
                 contractRoster = ""
                 statRoster = ""
@@ -1328,9 +1336,12 @@ async def on_message(message):
                     salaryCap = settings['salaryCap'] / 1000
                     salaryCap = f'Salary cap: ${salaryCap}M'
                     teamPayroll = f'Payroll: ${teamPayroll / 1000}M'
+                    if rosterOverflow:
+                        regularEmbed.add_field(name="Warning ⚠️", value="Some players are not on this list due to Discord's character limit.")
+                        secondaryEmbed.add_field(name="Warning ⚠️", value="Some players are not on this list due to Discord's character limit.")
                     regularEmbed.add_field(name=teamAbbrev + ' ' + str(infoSeason) + ' Roster (TR: ' + teamRating + ')', value=contractRoster, inline=False)
                     regularEmbed.add_field(name=teamPayroll, value=salaryCap, inline=False)
-                    secondaryEmbed.add_field(name=teamAbbrev + ' ' + str(infoSeason) + ' Roster (TR: ' + teamRating + ')', value=statRoster)
+                    secondaryEmbed.add_field(name=teamAbbrev + ' ' + str(infoSeason) + ' Roster (TR: ' + teamRating + ')', value=statRoster, inline=False)
                     secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see contracts | Made by ClevelandFan#6181")   
                     secondEmbed = True
                 else:
@@ -1354,6 +1365,18 @@ async def on_message(message):
                             pick = '**' + pick + '**'
                         teamPicks = teamPicks + pick + '\n'
                 regularEmbed.add_field(name=teamAbbrev + ' Picks', value=teamPicks)
+            
+            if command == 'ownspicks':
+                content = ""
+                for p in picks:
+                    if p['originalTid'] == winningTid:
+                        for t in teams:
+                            if p['tid'] == t['tid']:
+                                owningTeam = t['abbrev']
+                        addedLine = str(p['season']) + ' ' + str(p['round']) + ' round pick: Owned by **' + str(owningTeam) + '**'
+                        addedLine = addedLine.replace('1 round', '1st round').replace('2 round', '2nd round').replace('3 round', '3rd round').replace('4 round', '4th round')
+                        content = content + addedLine + '\n'
+                regularEmbed.add_field(name='Owner of ' + teamAbbrev + ' Picks', value=content)
 
             if command == 'pyramid' or command == 'sos':
                 #first to calculate average TR of the league for pryamid win
@@ -1449,7 +1472,8 @@ async def on_message(message):
                         scrubVar = 1
                     else:
                         await botEmbed.edit(content='', embed=secondaryEmbed)
-                        await botEmbed.remove_reaction('➡️', message.author)
+                        try: await botEmbed.remove_reaction('➡️', message.author)
+                        except: await message.channel.send('>>> ---' + '\n' + '⚠️ **__Warning__:** bbgmBot requires "manage messages" permissions in order to properly switch back-and-forth between embed screens.' + '\n' + '---')
                     def check(reaction, user):
                         return reaction.message == botEmbed and user == message.author and str(reaction.emoji) == '⬅️'
                     try:
@@ -1492,6 +1516,29 @@ async def on_message(message):
                     color=0x000000)
             secondEmbed = False
 
+            if command == 'draft':
+                if number == "":
+                    draftSeason = season
+                else:
+                    draftSeason = int(number)
+                #create first embed, sorting draft based off at-time ratings
+                playerList = []
+                for p in players:
+                    if p['draft']['year'] == draftSeason:
+                        playerList.append("{} {} {} {}".format(p['pid'], p['draft']['ovr'], p['draft']['pot'], (p['draft']['ovr'] + p['draft']['pot'])))
+                playerList.sort(key=lambda l: int(l.split(' ')[3]), reverse=True)
+                playerList = playerList[:10]
+                embedList = ""
+                for pl in playerList:
+                    pl = pl.split(' ')
+                    for p in players:
+                        if p['pid'] == int(pl[0]):
+                            playerName = p['firstName'] + ' ' + p['lastName']
+                            playerPos = p['ratings'][0]['pos']
+                            playerAge = draftSeason - p['born']['year']
+                            lineToAdd = playerPos + ' **' + playerName + '** - ' + str(playerAge) + ' yo ' + str(pl[1]) + '/' + str(pl[2])
+                            embedList = embedList + lineToAdd + '\n'
+                regularEmbed.add_field(name=str(draftSeason) + ' Draft', value=embedList)
 
             if command == 'fa':
                 if number == "":
@@ -1617,7 +1664,8 @@ async def on_message(message):
                         scrubVar = 1
                     else:
                         await botEmbed.edit(content='', embed=secondaryEmbed)
-                        await botEmbed.remove_reaction('➡️', message.author)
+                        try: await botEmbed.remove_reaction('➡️', message.author)
+                        except: await message.channel.send('>>> ---' + '\n' + '⚠️ **__Warning__:** bbgmBot requires "manage messages" permissions in order to properly switch back-and-forth between embed screens.' + '\n' + '---')
                     def check(reaction, user):
                         return reaction.message == botEmbed and user == message.author and str(reaction.emoji) == '⬅️'
                     try:
