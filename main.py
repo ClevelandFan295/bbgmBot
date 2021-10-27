@@ -103,7 +103,6 @@ async def on_message(message):
         if command in playerCommands:
             with open(f'{message.guild.id}.json', 'r', encoding='utf-8-sig') as file:
                     export = json.load(file)
-                    export['meta']['phaseText'] = 'Undefined phase'
                     players = export['players']
                     teams = export['teams']
                     settings = export['gameAttributes']
@@ -1103,7 +1102,6 @@ async def on_message(message):
         if command in teamCommands:
             with open(f'{message.guild.id}.json', 'r', encoding='utf-8-sig') as file:
                     export = json.load(file)
-                    export['meta']['phaseText'] = 'Undefined phase'
                     players = export['players']
                     teams = export['teams']
                     settings = export['gameAttributes']
@@ -1119,7 +1117,7 @@ async def on_message(message):
                         sport = 'basketball'
                     #meta stuff
                     season = settings['season']
-                    phaseText = export['meta']['phaseText'].split(' ')
+                    phaseText = str(season) + ' season'
                     phase = phaseText[1]
                     picks = export['draftPicks']
             commandTeam = messageContent.replace("0", "").replace("1", "").replace("2", "").replace("3", "").replace("4", "").replace("5", "").replace("6", "").replace("7", "").replace("8", "").replace("9", "")
@@ -1488,7 +1486,6 @@ async def on_message(message):
         if command in leagueCommands:
             with open(f'{message.guild.id}.json', 'r', encoding='utf-8-sig') as file:
                     export = json.load(file)
-                    export['meta']['phaseText'] = 'Undefined phase'
                     players = export['players']
                     teams = export['teams']
                     settings = export['gameAttributes']
@@ -1504,7 +1501,7 @@ async def on_message(message):
                         sport = 'basketball'
                     #meta stuff
                     season = settings['season']
-                    phaseText = export['meta']['phaseText']
+                    phaseText = str(season) + ' season'
                     phase = phaseText.split(' ')[1]
                     picks = export['draftPicks']
             
