@@ -110,6 +110,7 @@ async def on_message(message):
                 embed.add_field(name="**Other**",value="""
 • **-load** (server mods only, loads an export file)
 • **-help**
+• **-Brendan**
                 """, inline=True)
                 await message.channel.send(embed=embed)
             
