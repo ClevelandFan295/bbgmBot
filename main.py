@@ -84,7 +84,7 @@ async def on_message(message):
                         title='bbgmBot',
                         description=f'Currently in {len(client.guilds)} servers, bbgmBot pulls information from Basketball GM and Zen GM Hockey exports.',
                         color=0xE7AA00)
-                embed.set_footer(text="Made by ClevelandFan#6181")
+                embed.set_footer(text="Made by ClevelandFan#6181 and Brendan#8865")
                 # embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/829211052708855859/843262932179877928/55u7s4.jpg')
                 if message.channel.guild.me.guild_permissions.manage_messages == False:
                     embed.add_field(name='Warning ⚠️', value='bbgmBot requires "manage messages" permissions in order to properly switch between embed screens on commands such as roster and stats.')
@@ -409,7 +409,7 @@ async def on_message(message):
                                     secondaryEmbed.add_field(name=embedHeader,value=basicStatline, inline=False)
                                     secondaryEmbed.add_field(name='Efficiency',value=effStatline, inline=False)
                                     secondaryEmbed.add_field(name=bottomHeader,value=bottomText, inline=False)
-                                    secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see regular season stats | Made by ClevelandFan#6181")
+                                    secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see regular season stats | Made by ClevelandFan#6181 and Brendan#8865")
                                     secondaryEmbed.set_thumbnail(url=image)
                             else:
                                 if sport == 'basketball':
@@ -436,7 +436,7 @@ async def on_message(message):
                                         secondaryEmbed.add_field(name=embedHeader,value=basicStatline, inline=False)
                                         secondaryEmbed.add_field(name='Efficiency',value=effStatline, inline=False)
                                         secondaryEmbed.add_field(name=bottomHeader,value=bottomText, inline=False)
-                                        secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see regular season stats | Made by ClevelandFan#6181")
+                                        secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see regular season stats | Made by ClevelandFan#6181 and Brendan#8865")
                                         secondaryEmbed.set_thumbnail(url=image)
                                 if sport == 'hockey':
                                     averageToi = round(totalToi / totalGames, 1)
@@ -461,7 +461,7 @@ async def on_message(message):
                                             secondaryEmbed.add_field(name=embedHeader,value=basicStatline, inline=False)
                                             secondaryEmbed.add_field(name='Efficiency',value=effStatline, inline=False)
                                             secondaryEmbed.add_field(name=bottomHeader,value=bottomText, inline=False)
-                                            secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see regular season stats | Made by ClevelandFan#6181")
+                                            secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see regular season stats | Made by ClevelandFan#6181 and Brendan#8865")
                                             secondaryEmbed.set_thumbnail(url=image)
                                     if playerPos == 'C':
                                         basicStatline = f'{totalPts} pts, {totalGl} G, {totalAst} A, {str(totalPm)} +/-, {psStat}'
@@ -475,7 +475,7 @@ async def on_message(message):
                                             secondaryEmbed.add_field(name=embedHeader,value=basicStatline, inline=False)
                                             secondaryEmbed.add_field(name='Efficiency',value=effStatline, inline=False)
                                             secondaryEmbed.add_field(name=bottomHeader,value=bottomText, inline=False)
-                                            secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see regular season stats | Made by ClevelandFan#6181")
+                                            secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see regular season stats | Made by ClevelandFan#6181 and Brendan#8865")
                                             secondaryEmbed.set_thumbnail(url=image)
                                     if playerPos == 'D':
                                         basicStatline = f'{totalPts} pts, {totalGl} G, {totalAst} A, {str(totalPm)} +/-, {psStat}'
@@ -489,7 +489,7 @@ async def on_message(message):
                                             secondaryEmbed.add_field(name=embedHeader,value=basicStatline, inline=False)
                                             secondaryEmbed.add_field(name='Defense/Efficiency',value=effStatline, inline=False)
                                             secondaryEmbed.add_field(name=bottomHeader,value=bottomText, inline=False)
-                                            secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see regular season stats | Made by ClevelandFan#6181")
+                                            secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see regular season stats | Made by ClevelandFan#6181 and Brendan#8865")
                                             secondaryEmbed.set_thumbnail(url=image)
                                     if playerPos == 'G':
                                         basicStatline = f'{totalGames} GP, {totalGa} goals allowed, {svPc} SV%, {round(totalGps, 1)} GPS'
@@ -500,7 +500,7 @@ async def on_message(message):
                                             embedHeader = str(statSeason) + ' Stats ' + statTeamText
                                             secondaryEmbed.add_field(name=embedHeader,value=basicStatline, inline=False)
                                             secondaryEmbed.add_field(name=bottomHeader,value=bottomText, inline=False)
-                                            secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see regular season stats | Made by ClevelandFan#6181")
+                                            secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see regular season stats | Made by ClevelandFan#6181 and Brendan#8865")
                                             secondaryEmbed.set_thumbnail(url=image)
 
 
@@ -768,7 +768,7 @@ async def on_message(message):
                                         secondaryEmbed.add_field(name=embedHeader,value=basicStatline, inline=False)
                                         secondaryEmbed.add_field(name='Efficiency',value=effStatline, inline=False)
                                         secondaryEmbed.add_field(name=bottomHeader,value=bottomText, inline=False)
-                                        secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see regular season stats | Made by ClevelandFan#6181")
+                                        secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see regular season stats | Made by ClevelandFan#6181 and Brendan#8865")
                                         secondaryEmbed.set_thumbnail(url=image)
                                 else:
                                     averageMins = round(totalMins / totalGames, 1)
@@ -805,7 +805,7 @@ async def on_message(message):
                                         secondaryEmbed.add_field(name=embedHeader,value=basicStatline, inline=False)
                                         secondaryEmbed.add_field(name='Efficiency',value=effStatline, inline=False)
                                         secondaryEmbed.add_field(name=bottomHeader,value=bottomText, inline=False)
-                                        secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see regular season stats | Made by ClevelandFan#6181")
+                                        secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see regular season stats | Made by ClevelandFan#6181 and Brendan#8865")
                                         secondaryEmbed.set_thumbnail(url=image)
 
                                                 
@@ -1083,9 +1083,9 @@ async def on_message(message):
             #Send the final embed, set up the arrow switcher if there's two embeds
             regularEmbed.add_field(name=bottomHeader,value=bottomText, inline=False)
             if secondEmbed == True:
-                regularEmbed.set_footer(text="Click the ➡️  arrow to see playoff stats | Made by ClevelandFan#6181")
+                regularEmbed.set_footer(text="Click the ➡️  arrow to see playoff stats | Made by ClevelandFan#6181 and Brendan#8865")
             else:
-                regularEmbed.set_footer(text="Made by ClevelandFan#6181")
+                regularEmbed.set_footer(text="Made by ClevelandFan#6181 and Brendan#8865")
             botEmbed = await message.channel.send(embed=regularEmbed)
             if secondEmbed == True:
                 await botEmbed.add_reaction('⬅️')
@@ -1354,7 +1354,7 @@ async def on_message(message):
                     regularEmbed.add_field(name=teamAbbrev + ' ' + str(infoSeason) + ' Roster (TR: ' + teamRating + ')', value=contractRoster, inline=False)
                     regularEmbed.add_field(name=teamPayroll, value=salaryCap, inline=False)
                     secondaryEmbed.add_field(name=teamAbbrev + ' ' + str(infoSeason) + ' Roster (TR: ' + teamRating + ')', value=statRoster, inline=False)
-                    secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see contracts | Made by ClevelandFan#6181")   
+                    secondaryEmbed.set_footer(text="Click the ⬅️  arrow to see contracts | Made by ClevelandFan#6181 and Brendan#8865")   
                     secondEmbed = True
                 else:
                     regularEmbed.add_field   (name=teamAbbrev + ' ' + str(infoSeason) + ' Roster (TR: ' + teamRating + ')', value=statRoster)  
@@ -1459,17 +1459,17 @@ async def on_message(message):
                             description=f'{teamRecord}, {playoffResult}',
                             color=embedColor)
                 secondaryEmbed.add_field(name='How Pyramid Wins Work', value="*The pyramid projected record factors in games already played (it only does 'projections' for games remaining on the schedule, and adds them to current record), team rating, and strength of schedule. It does not factor injuries, stats, or team makeup (so consider differing from the pyramid record to tell a story about roster construction). The way it works is it compares a team rating to the league average team rating (a team with exactly the average would have a .500 pyramid win %, not accounting for schedule) and then applying a boost for a weak schedule and vice versa.*")
-                secondaryEmbed.set_footer(text="Click the ⬅️  arrow to go pack to the pyramid wins projection | Made by ClevelandFan#6181")   
+                secondaryEmbed.set_footer(text="Click the ⬅️  arrow to go pack to the pyramid wins projection | Made by ClevelandFan#6181 and Brendan#8865")   
                 secondEmbed = True
 
             #send the embed and set up second embed
             if secondEmbed == True:
                 if command == 'roster':
-                    regularEmbed.set_footer(text="Click the ➡️  arrow to see stats | Made by ClevelandFan#6181")
+                    regularEmbed.set_footer(text="Click the ➡️  arrow to see stats | Made by ClevelandFan#6181 and Brendan#8865")
                 if command == 'pyramid':
-                    regularEmbed.set_footer(text='Click the ➡️  arrow to see how pyramid wins work | Made by ClevelandFan#6181')
+                    regularEmbed.set_footer(text='Click the ➡️  arrow to see how pyramid wins work | Made by ClevelandFan#6181 and Brendan#8865')
             else:
-                regularEmbed.set_footer(text="Made by ClevelandFan#6181")
+                regularEmbed.set_footer(text="Made by ClevelandFan#6181 and Brendan#8865")
             #send the actual embed
             botEmbed = await message.channel.send(embed=regularEmbed)
             if secondEmbed == True:
@@ -1609,7 +1609,7 @@ async def on_message(message):
                     description=str(phaseText),
                     color=0x000000)
                 secondaryEmbed.add_field(name='Free Agents (POT)', value=freeAgentsContent)
-                secondaryEmbed.set_footer(text='Click the ⬅️  arrow to sort by OVR | Made by ClevelandFan#6181')
+                secondaryEmbed.set_footer(text='Click the ⬅️  arrow to sort by OVR | Made by ClevelandFan#6181 and Brendan#8865')
                 secondEmbed = True
         
             if command == 'deaths':
@@ -1650,17 +1650,17 @@ async def on_message(message):
                         deathSecondText = deathSecondText + playerName + ' - Died ' + str(x[1]) + ' (age ' + str(diedAge) + ')' + '\n'
                     
                     secondaryEmbed.add_field(name='Deaths (continued)', value=deathSecondText)
-                    secondaryEmbed.set_footer(text='Made by ClevelandFan#6181')
+                    secondaryEmbed.set_footer(text='Made by ClevelandFan#6181 and Brendan#8865')
                     secondEmbed = True
 
 
             #send the embed and set up second embed
             if secondEmbed == True:
                 if command == 'fa':
-                    regularEmbed.set_footer(text="Click the ➡️  arrow to sort by POT | Made by ClevelandFan#6181")
+                    regularEmbed.set_footer(text="Click the ➡️  arrow to sort by POT | Made by ClevelandFan#6181 and Brendan#8865")
 
             else:
-                regularEmbed.set_footer(text="Made by ClevelandFan#6181")
+                regularEmbed.set_footer(text="Made by ClevelandFan#6181 and Brendan#8865")
             #send the actual embed
             botEmbed = await message.channel.send(embed=regularEmbed)
             if secondEmbed == True:
