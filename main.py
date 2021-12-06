@@ -8,6 +8,7 @@ import os
 import time
 import asyncio
 from difflib import SequenceMatcher
+import random
 
 
 client = commands.Bot(command_prefix='')
@@ -24,7 +25,7 @@ async def on_ready():
         print(server.name + ' | ID: ' + str(server.id))
         
 prefix = '-'
-nonExportCommands = ['help', 'load', 'test']
+nonExportCommands = ['help', 'load', 'test', 'brendan']
 playerCommands = ['stats', 'bio', 'ratings', 'adv', 'proghistory', 'awards', 'compare', 'splits']
 teamCommands = ['roster', 'picks', 'pyramid', 'sos', 'ownspicks']
 leagueCommands = ['fa', 'pr', 'draft', 'deaths']
@@ -64,6 +65,19 @@ async def on_message(message):
                         await message.channel.send("That doesn't look like a valid URL.")
                 else:
                     await message.channel.send("You don't have permissions to load exports. Users with the 'manage roles' command can.")
+            
+            if command == 'brendan':
+                x=random.randint(1,5)
+                if x == 1:
+                    await message.channel.send("Brendan#8865 is the coolest person I know")
+                if x == 2:
+                    await message.channel.send("Brendan#8865 is the smartest person I know")
+                if x == 3:
+                    await message.channel.send("Brendan#8865 is super awesome and I am jealous of him")
+                if x == 4:
+                    await message.channel.send("I wish I was more like Brendan#8865. He is so cool")
+                if x == 5:
+                    await message.channel.send("Being able to speak to Brendan#8865 is the highlight of my life")
 
             if command == 'help':
                 embed = discord.Embed(
